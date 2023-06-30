@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\TicketController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Profile\AvatarController;
@@ -35,15 +39,40 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/openai',function (){
+//Route::get('/openai',function (){
+//
+//$result = OpenAI::images()->create([
+//    "prompt"=> "create avatar for a female developer 20 years old moroccan called manar",
+//    "n"=> 1,
+//    "size"=> "512x512",
+//]);
+//
+//    return response(['url' => $result->data[0]->url]); // an open-source, widely-used, server-side scripting language.
+//
+//// an open-source, widely-used, server-side scripting language.
+//});
 
-$result = OpenAI::images()->create([
-    "prompt"=> "create avatar for a female developer 20 years old moroccan called manar",
-    "n"=> 1,
-    "size"=> "512x512",
-]);
+Route::post('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+})->name('login.github');
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+    $user=User::firstOrCreate(['email'=>$user->email],[
+        'name'=>$user->nickname,
+        'password'=>'password',
+    ]);
+    Auth::login($user);
+    return redirect('/dashboard');
 
-    return response(['url' => $result->data[0]->url]); // an open-source, widely-used, server-side scripting language.
 
-// an open-source, widely-used, server-side scripting language.
+    // $user->token
 });
+
+Route::middleware('auth')->prefix('ticket')->name('ticket.')->group(function (){
+    Route::resource('/',TicketController::class);
+
+//    Route::get('/ticket/create',[TicketController::class,'create'])->name('ticket.create');
+//    Route::post('/ticket/create',[TicketController::class,'store'])->name('ticket.store');
+
+});
+
