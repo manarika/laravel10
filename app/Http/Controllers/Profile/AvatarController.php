@@ -18,12 +18,12 @@ class AvatarController extends Controller
         ]);*/
        //$path=$request->file('avatar')->store('avatars','public');
 
-        $path = Storage::disk('public')->put('avatars', $request->file('avatar'));
-        if ($oldavatar=$request->user()->avatar)
-       {
-           Storage::disk('public')->delete($oldavatar);
+            $path = Storage::disk('public')->put('avatars', $request->file('avatar'));
+            if ($oldavatar=$request->user()->avatar)
+           {
+               Storage::disk('public')->delete($oldavatar);
 
-       }
+           }
 
        auth()->user()->update(['avatar'=>$path]);
        return redirect(route('profile.edit'))->with('message','avatar updated successfully');
@@ -37,9 +37,8 @@ class AvatarController extends Controller
             "size"=> "512x512",
         ]);
 
-$content=file_get_contents($result->data[0]->url);
-
-$filename=Str::random(23);
+    $content=file_get_contents($result->data[0]->url);
+    $filename=Str::random(23);
          Storage::disk('public')->put("avatars/$filename.jpg", $content);
         if ($oldavatar=$request->user()->avatar)
         {

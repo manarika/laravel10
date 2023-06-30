@@ -6,14 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Texarea extends Component
+class textarea1 extends Component
 {
+
+    public $value=null;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($value)
     {
-        //
+        $this->value=$value;
     }
 
     /**
@@ -21,6 +23,6 @@ class Texarea extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.texarea');
+        return view('components.textarea1');
     }
 }
