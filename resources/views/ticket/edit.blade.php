@@ -16,7 +16,7 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="description" :value="__('Description')" />
-            <x-textarea1 name="description"  id="description" value="{{$ticket->description}}"/>
+            <x-textarea name="description"  id="description" value="{{$ticket->description}}"/>
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
 
         </div>

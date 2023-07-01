@@ -1,7 +1,7 @@
 ## learning laravel 10 
 ## project idea
 1. User can creat a new help ticket
-2. Admin can replay on help ticket
+2. Admin and user can replay on help ticket
 3. Admin can reject or resolve the ticket
 4. When admin update on the ticket then user will get one notification via email
 that the ticket status is updated

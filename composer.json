@@ -12,7 +12,8 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
-        "openai-php/laravel": "^0.6.0"
+        "openai-php/laravel": "^0.6.0",
+      "ext-http": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

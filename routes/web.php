@@ -71,7 +71,7 @@ Route::get('/auth/callback', function () {
     Route::middleware('auth')->group(function (){
     Route::resource('/ticket',TicketController::class);
 
-//    Route::post('/ticket/create',[TicketController::class,'store'])->name('ticket.store');
+   Route::get('/ticket/{ticket}/reply',[TicketController::class,'reply'])->name('ticket.reply');
 
 });
 

@@ -4,7 +4,7 @@
 
     <form method="POST" action="{{ route('ticket.store') }}" enctype="multipart/form-data" >
         @csrf
-
+@method('post')
         <!-- Email Address -->
         <div>
             <x-input-label for="title" :value="__('Title')" />
@@ -15,7 +15,7 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="description" :value="__('Description')" />
-            <x-textarea name="description"  id="description"/>
+            <x-textarea name="description"  id="description" value=null />
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 

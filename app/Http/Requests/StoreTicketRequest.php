@@ -25,7 +25,7 @@ class StoreTicketRequest extends FormRequest
             'title'=>['string','max:255'],
             'description'=>['required','string'],
             'attachment'=>['sometimes','file','mimes:jpg,jpeg,png,pdf'],
-
+            'reply'=>['string']
 
         ];
     }
